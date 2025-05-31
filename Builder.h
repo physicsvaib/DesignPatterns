@@ -4,15 +4,40 @@
 
 #ifndef BUILDER_H
 #define BUILDER_H
-
+#include <sstream>
+#include <vector>
 
 // So whats the idea
 // Actually its simple, Instead of having lets say 10 arguments in constructor
 // why dont we just break it, introducing piece wise construction of an object.
 // to provide a good API for creation of object with large parameters.
 
-class Builder {
+// Techniques to make that idea work may vary but the idea is simple
+
+struct HTMLElement {
+ private:
+  std::string name, text;
+  std::vector<HTMLElement> children;
+  const int indent_size = 2;
+  friend class HTMLBuilder;
+  HTMLElement(std::string name, std::string text) : name{name}, text{text} {}
+  HTMLElement() {}
+
+ public:
+  std::string str(int indent = 0) const;
 };
 
+struct HTMLBuilder {
+ private:
+  HTMLElement root;
 
-#endif //BUILDER_H
+ public:
+  HTMLBuilder(std::string head) { root.name = head; }
+  HTMLBuilder& add_element(std::string name, std::string text);
+  std::string str() const;
+
+  operator HTMLElement() const;
+  // HTMLElement build();
+};
+
+#endif  // BUILDER_H
