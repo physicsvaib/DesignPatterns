@@ -7,4 +7,6 @@ add_executable(DesignPatterns main.cpp
         KeyBoard.cpp
         KeyBoard.h
         Builder.cpp
-        Builder.h)
+        Builder.h
+        Factory.cpp
+        Factory.h)

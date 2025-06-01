@@ -13,6 +13,9 @@
 // to provide a good API for creation of object with large parameters.
 
 // Techniques to make that idea work may vary but the idea is simple
+// theme is piece wise parameter passing and than building the object as
+// specified by user mostly immutable objects so when we say build or construct
+// a complex class after using builder we get the object with said params
 
 struct HTMLElement {
  private:
